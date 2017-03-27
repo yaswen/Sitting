@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>排座位</title>
+<style type="text/css">
+body {align:center;}
+div#container {width:800px;margin:0 auto;}
+div#head {background-color:#99bbbb;width:800px;}
+table#sitting {border-width:2px;border-style:double;}
+td {text-align:center;width:80px;border-width:2px;}
+td#road {width:40px;}
+input.seat {width:70px;height:20px;font-size:18px;}
+</style>
+<script>
+	
+
+	function done(){
+		for (var x=1;x<=16;x++)
+			{
+				
+			}
+	
+	}
+	function clean(){
+		for (var y=1;y<=16;y++)
+			{
+				var i=document.getElementById("seat"+y);
+				i.value="";
+			}
+	}
+</script>
+
+</head>
+<body>
+<div id="container" align="center">
+<div id="head" align="center"><!-- 表格上方说明及标题 -->
+<h2>排排坐</h2>
+
+	<table>
+		<tr>
+			<td>	诗文	</td>
+			<td>	凯月	</td>
+			<td>	龙龙	</td>
+			<td>	楠楠	</td>
+			<td>	欣欣	</td>
+			<td>	小马	</td>
+			<td>	卖梨	</td>
+			<td>	飞飞	</td>
+			<td>	崔馨	</td>
+			<td>	史培芹	</td>
+			<td>	王义松	</td>
+			<td>	陈亮	</td>
+			<td>	冬琴	</td>
+			<td>	马乐	</td>
+			<td>	卡西	</td>
+			<td>	马总	</td>			
+		</tr>
+	</table>
+
+</div>
+<table id="sitting">		
+	<tr>	
+		<td rowspan="10" id="road" >过道</td><!-- 左侧过道 -->
+		<td colspan="4">窗</td>
+		<td rowspan="10" id="road">过道</td><!-- 右侧过道 -->
+	</tr>	
+	<tr>	
+		<td><input type="text" id="seat1" class="seat" value=""></input></td>
+		<td><input type="text" id="seat2" class="seat" value=""></input></td>
+		<td><input type="text" id="seat3" class="seat" value=""></input></td>
+		<td><input type="text" id="seat4" class="seat" value=""></input></td>
+	</tr>	
+	<tr>	
+		<td><input type="text" id="seat5" class="seat" value=""></input></td>
+		<td><input type="text" id="seat6" class="seat" value=""></input></td>
+		<td><input type="text" id="seat7" class="seat" value=""></input></td>
+		<td><input type="text" id="seat8" class="seat" value=""></input></td>
+	</tr>	
+	<tr>	
+		<td id="road" colspan="4">过道</td>
+	</tr>	
+	<tr>	
+		<td><input type="text" id="seat9" class="seat" value=""></input></td>
+		<td><input type="text" id="seat10" class="seat" value=""></input></td>
+		<td><input type="text" id="seat11" class="seat" value=""></input></td>
+		<td><input type="text" id="seat12" class="seat" value=""></input></td>
+	</tr>	
+	<tr>	
+		<td><input type="text" id="seat13" class="seat" value=""></input></td>
+		<td><input type="text" id="seat14" class="seat" value=""></input></td>
+		<td><input type="text" id="seat15" class="seat" value=""></input></td>
+		<td><input type="text" id="seat16" class="seat" value=""></input></td>
+	</tr>	
+</table>	
+<br>
+<br>	
+<div align="center">
+	<input type="button" id="submit" value="完成" onclick="done()"></input>
+	<input type="button" id="clean" value="清空" onclick="clean()"></input>
+</div>
+
+
+</div>
+</body>
+</html>

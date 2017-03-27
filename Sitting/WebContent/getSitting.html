@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>排座位</title>
+<style type="text/css">
+body {align:center;}
+div#container {width:800px;margin:0 auto;}
+div#head {background-color:#99bbbb;width:800px;}
+table#sitting {border-width:2px;border-style:double;}
+td {text-align:center;width:80px;border-style:solid;border-width:1px;}
+td#road {width:40px;}
+input.seat {width:70px;height:20px;font-size:18px;}
+</style>
+<script>
+var likes=new Array(16);
+var names=new Array("诗文","凯月","龙龙","楠楠","欣欣","小马","卖梨","飞飞","崔馨","史培芹","王义松","陈亮","冬琴","马乐","卡西","马总");
+var sum=0;
+var fens=new Array(17);
+function start(){
+    for(var fav=1;fav<=16;fav++){
+        likes[fav-1]=names[getRandomNum015()];//每个人喜欢的人随机一个名
+        document.getElementById("like"+fav).innerHTML=likes[fav-1];//把每个人喜欢的人放在表格里
+    }
+    //alert(likes[0]);
+}
+function getRandomNum015()//随机数1-16
+{
+    var Rand = Math.random();
+    return(0 + Math.round(Rand * 15));
+}   
+function getLocal(arr,obj)
+{
+	var i = arr.length;
+	while (i--) {
+	    if (arr[i] === obj) {
+	        return i;
+	    }
+	}
+	return -1;
+}
+//alert(names[9]);
+function done(){
+      var seat=new Array();
+      var sa=new Array();
+      for (var x=1;x<=16;x++)
+          {
+              seat[x]=document.getElementById("seat"+x);//十六个格的对象数组
+              sa[x]=seat[x].value;//每个格里写的文本数组
+              if(contains(names,sa[x])==-1){
+                  alert("有的名字写错了");
+			break;
+              }
+		
+          }
+    for (var x=0;x<=15;x++){
+		if(contains(sa,names[x])==-1){
+			alert(names[x]+"没排进来");
+			break;
+		}
+	}
+    sum=0;
+	for (var x=1;x<=16 ;x++ )
+	{
+	switch(x){
+		case 1:
+		case 9:
+			fens[x]=0;
+			var a=sa[x];
+			var a0=likes[contains(names,a)]
+			var b1=sa[x+1];
+			var b2=sa[x+4];
+			if(a0==b1){
+				fens[x]+=1;
+			}
+			if(a0==b2){
+				fens[x]+=1;
+			}
+			break;
+		case 4:
+		case 12:
+			fens[x]=0;
+			var a=sa[x];
+			var a0=likes[contains(names,a)]
+			var b1=sa[x-1];
+			var b2=sa[x+4];
+			if(a0==b1){
+				fens[x]+=1;
+			}
+			if(a0==b2){
+				fens[x]+=1;
+			}
+			break;
+		case 5:
+		case 13:
+			fens[x]=0;
+			var a=sa[x];
+			var a0=likes[contains(names,a)]
+			var b1=sa[x+1];
+			var b2=sa[x-4];
+			if(a0==b1){
+				fens[x]+=1;
+			}
+			if(a0==b2){
+				fens[x]+=1;
+			}
+			break;
+		case 8:
+		case 16:
+			fens[x]=0;
+			var a=sa[x];
+			var a0=likes[contains(names,a)]
+			var b1=sa[x-1];
+			var b2=sa[x-4];
+			if(a0==b1){
+				fens[x]+=1;
+			}
+			if(a0==b2){
+				fens[x]+=1;
+			}
+			break;
+		case 2:
+		case 3:
+		case 10:
+		case 11:
+			fens[x]=0;
+			var a=sa[x];
+			var a0=likes[contains(names,a)]
+			var b1=sa[x-1];
+			var b2=sa[x+4];
+			var b3=sa[x+1];
+			if(a0==b1){
+				fens[x]+=1;
+			}
+			if(a0==b2){
+				fens[x]+=1;
+			}
+			if(a0==b3){
+				fens[x]+=1;
+			}
+			break;
+		case 6:
+		case 7:
+		case 15:
+		case 14:
+			fens[x]=0;
+			var a=sa[x];
+			var a0=likes[contains(names,a)]
+			var b1=sa[x-1];
+			var b2=sa[x-4];
+			var b3=sa[x+1];
+			if(a0==b1){
+				fens[x]+=1;
+			}
+			if(a0==b2){
+				fens[x]+=1;
+			}
+			if(a0==b3){
+				fens[x]+=1;
+			}
+			break;
+		}
+	
+	}
+	for(var a=1;a<=16;a++){
+		sum+=fens[a];
+	}
+	document.getElementById("result").innerHTML="得分："+sum
+	//alert("得分："+sum);
+      //alert(contains(sa,"x"));
+}
+function clean(){
+	for (var y=1;y<=16;y++)
+	    {
+	        var i=document.getElementById("seat"+y);
+	        i.value="";
+	    }
+}
+function contains(arr, obj) {
+	var i = arr.length;
+	while (i--) {
+	    if (arr[i] === obj) {
+	        return i;
+	    }
+	}
+	return -1;
+}
+</script>
+
+</head>
+<body>
+<div id="container" align="center">
+<div id="head" align="center"><!-- 表格上方说明及标题 -->
+<h2>排排坐</h2>
+
+    <table>
+        <tr>
+            <td>    诗文    </td>
+            <td>    凯月    </td>
+            <td>    龙龙    </td>
+            <td>    楠楠    </td>
+            <td>    欣欣    </td>
+            <td>    小马    </td>
+            <td>    卖梨    </td>
+            <td>    飞飞    </td>
+            <td>    崔馨    </td>
+            <td>    史培芹    </td>
+            <td>    王义松    </td>
+            <td>    陈亮    </td>
+            <td>    冬琴    </td>
+            <td>    马乐    </td>
+            <td>    卡西    </td>
+            <td>    马总    </td>           
+        </tr>
+        <tr>
+            <td id="like1">d</td>
+            <td id="like2"></td>
+            <td id="like3"></td>
+            <td id="like4"></td>
+            <td id="like5"></td>
+            <td id="like6"></td>
+            <td id="like7"></td>
+            <td id="like8"></td>
+            <td id="like9"></td>
+            <td id="like10"></td>
+            <td id="like11"></td>
+            <td id="like12"></td>
+            <td id="like13"></td>
+            <td id="like14"></td>
+            <td id="like15"></td>
+            <td id="like16"></td>
+
+        </tr>
+        <tr>
+            <td colspan="16"><input type="button" onclick="start()" value="开始"></td>
+        </tr>
+    </table>
+
+</div>
+<table id="sitting">       
+    <tr>   
+        <td rowspan="10" id="road" >过道</td><!-- 左侧过道 -->
+        <td colspan="4">窗</td>
+        <td rowspan="10" id="road">过道</td><!-- 右侧过道 -->
+    </tr>   
+    <tr>   
+        <td><input type="text" id="seat1" class="seat" value=""></input></td>
+        <td><input type="text" id="seat2" class="seat" value=""></input></td>
+        <td><input type="text" id="seat3" class="seat" value=""></input></td>
+        <td><input type="text" id="seat4" class="seat" value=""></input></td>
+    </tr>   
+    <tr>   
+        <td><input type="text" id="seat5" class="seat" value=""></input></td>
+        <td><input type="text" id="seat6" class="seat" value=""></input></td>
+        <td><input type="text" id="seat7" class="seat" value=""></input></td>
+        <td><input type="text" id="seat8" class="seat" value=""></input></td>
+    </tr>   
+    <tr>   
+        <td id="road" colspan="4">过道</td>
+    </tr>   
+    <tr>   
+        <td><input type="text" id="seat9" class="seat" value=""></input></td>
+        <td><input type="text" id="seat10" class="seat" value=""></input></td>
+        <td><input type="text" id="seat11" class="seat" value=""></input></td>
+        <td><input type="text" id="seat12" class="seat" value=""></input></td>
+    </tr>   
+    <tr>   
+        <td><input type="text" id="seat13" class="seat" value=""></input></td>
+        <td><input type="text" id="seat14" class="seat" value=""></input></td>
+        <td><input type="text" id="seat15" class="seat" value=""></input></td>
+        <td><input type="text" id="seat16" class="seat" value=""></input></td>
+    </tr>   
+</table>   
+<br>
+<br>   
+<div align="center">
+	<p id="result"></p>
+	<br>
+    <input type="button" id="submit" value="完成" onclick="done()"></input>
+    <input type="button" id="clean" value="清空" onclick="clean()"></input>
+</div>
+
+
+</div>
+</body>
+</html>
